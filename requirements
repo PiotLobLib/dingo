@@ -1,0 +1,6 @@
+# python 3.13.0
+
+django==5.1.7
+ipykernel==6.29.5
+ipython==9.0.2
+pycodestyle==2.12.1
