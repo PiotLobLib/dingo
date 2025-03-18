@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import messages
 
-from maths.models import Math
+from maths.models import Math, Result
 
 
 class Calculator:
@@ -14,8 +14,13 @@ class Calculator:
     def add(request, a, b):
         a, b = int(a), int(b)
         wynik = a + b
+
         c = {"a": a, "b": b, "operacja": "+",
              "wynik": wynik, "title": "dodawanie"}
+
+        result = Result.objects.get_or_create(value=wynik)[0]
+        Math.objects.create(operation='add', a=a, b=b, result=result)
+
         return render(
             request=request,
             template_name="maths/operation.html",
@@ -26,8 +31,13 @@ class Calculator:
     def sub(request, a, b):
         a, b = int(a), int(b)
         wynik = a - b
+
         c = {"a": a, "b": b, "operacja": "-",
              "wynik": wynik, "title": "odejmowanie"}
+
+        result = Result.objects.get_or_create(value=wynik)[0]
+        Math.objects.create(operation='sub', a=a, b=b, result=result)
+
         return render(
             request=request,
             template_name="maths/operation.html",
@@ -38,8 +48,13 @@ class Calculator:
     def mul(request, a, b):
         a, b = int(a), int(b)
         wynik = a * b
+
         c = {"a": a, "b": b, "operacja": "*",
              "wynik": wynik, "title": "mnożenie"}
+
+        result = Result.objects.get_or_create(value=wynik)[0]
+        Math.objects.create(operation='mul', a=a, b=b, result=result)
+
         return render(
             request=request,
             template_name="maths/operation.html",
@@ -64,6 +79,9 @@ class Calculator:
             "wynik": wynik,
             "title": "dzielenie"
         }
+
+        result = Result.objects.get_or_create(value=wynik)[0]
+        Math.objects.create(operation='div', a=a, b=b, result=result)
 
         return render(
             request=request,
