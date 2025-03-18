@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.template import Context
 from django.contrib import messages
+
+from maths.models import Math
 
 
 class Calculator:
@@ -68,3 +69,21 @@ class Calculator:
             request=request,
             template_name="maths/operation.html",
             context=c)
+
+
+def maths_list(request):
+    maths = Math.objects.all()
+    return render(
+        request=request,
+        template_name="maths/list.html",
+        context={"maths": maths}
+    )
+
+
+def math_details(request, id):
+    math = Math.objects.get(id=id)
+    return render(
+        request=request,
+        template_name="maths/details.html",
+        context={"math": math}
+    )
