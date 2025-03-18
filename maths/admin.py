@@ -1,6 +1,6 @@
 from django.contrib import admin
+
 from maths.models import Math, Result
-# Register your models here.
 
 
 class MathAdmin(admin.ModelAdmin):
