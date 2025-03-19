@@ -1,0 +1,13 @@
+{% extends "posts/base.html" %}
+
+{% block title %}Lista autorów{% endblock %}
+
+{% block content %}
+   <h2>Lista autorów</h2>
+   <ul>
+       {% for author in authors %}
+           <li><a href="{% url 'posts:author_detail' author.id %}">{{ author.nick }}</a> – {{ author.email }}</li>
+       {% endfor %}
+   </ul>
+   <a href="{% url 'posts:author_create' %}">Dodaj nowego autora</a>
+{% endblock %}

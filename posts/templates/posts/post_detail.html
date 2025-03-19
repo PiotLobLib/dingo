@@ -1,0 +1,11 @@
+{% extends "posts/base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+   <h2>{{ post.title }}</h2>
+   <p>{{ post.content }}</p>
+   <p><strong>Autor:</strong> <a href="{% url 'posts:author_detail' post.author.id %}">{{ post.author.nick }}</a></p>
+   <p><strong>Data utworzenia:</strong> {{ post.created }}</p>
+   <a href="{% url 'posts:post_list' %}">Powrót do listy postów</a>
+{% endblock %}

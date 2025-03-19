@@ -1,0 +1,15 @@
+{% extends "posts/base.html" %}
+
+{% block title %}{{ author.nick }}{% endblock %}
+
+{% block content %}
+   <h2>{{ author.nick }}</h2>
+   <p><strong>Email:</strong> {{ author.email }}</p>
+   <h3>Posty autora:</h3>
+   <ul>
+       {% for post in author.post_set.all %}
+           <li><a href="{% url 'posts:post_detail' post.id %}">{{ post.title }}</a></li>
+       {% endfor %}
+   </ul>
+   <a href="{% url 'posts:author_list' %}">Powrót do listy autorów</a>
+{% endblock %}
