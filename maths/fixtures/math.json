@@ -1,0 +1,46 @@
+[
+{
+    "model": "maths.math",
+    "pk": 1,
+    "fields": {
+        "operation": "add",
+        "a": 1,
+        "b": 2,
+        "created": "2025-03-18T18:05:02.667Z",
+        "result": 2
+    }
+},
+{
+    "model": "maths.math",
+    "pk": 2,
+    "fields": {
+        "operation": "sub",
+        "a": 10,
+        "b": 20,
+        "created": "2025-03-18T18:05:38.532Z",
+        "result": null
+    }
+},
+{
+    "model": "maths.math",
+    "pk": 3,
+    "fields": {
+        "operation": "div",
+        "a": 11,
+        "b": 2,
+        "created": "2025-03-18T18:06:02.231Z",
+        "result": null
+    }
+},
+{
+    "model": "maths.math",
+    "pk": 4,
+    "fields": {
+        "operation": "add",
+        "a": 22,
+        "b": 22,
+        "created": "2025-03-18T19:11:36.795Z",
+        "result": null
+    }
+}
+]
