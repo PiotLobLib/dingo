@@ -6,8 +6,8 @@
         "operation": "add",
         "a": 1,
         "b": 2,
-        "created": "2025-03-18T18:05:02.667Z",
-        "result": 2
+        "created": "2025-03-18T10:00:00Z",
+        "result": 1
     }
 },
 {
@@ -17,8 +17,8 @@
         "operation": "sub",
         "a": 10,
         "b": 20,
-        "created": "2025-03-18T18:05:38.532Z",
-        "result": null
+        "created": "2025-03-18T10:05:00Z",
+        "result": 2
     }
 },
 {
@@ -28,19 +28,107 @@
         "operation": "div",
         "a": 11,
         "b": 2,
-        "created": "2025-03-18T18:06:02.231Z",
-        "result": null
+        "created": "2025-03-18T10:10:00Z",
+        "result": 3
     }
 },
 {
     "model": "maths.math",
     "pk": 4,
     "fields": {
+        "operation": "div",
+        "a": 10,
+        "b": 0,
+        "created": "2025-03-18T10:15:00Z",
+        "result": 4
+    }
+},
+{
+    "model": "maths.math",
+    "pk": 5,
+    "fields": {
         "operation": "add",
         "a": 22,
         "b": 22,
-        "created": "2025-03-18T19:11:36.795Z",
-        "result": null
+        "created": "2025-03-18T10:20:00Z",
+        "result": 5
+    }
+},
+{
+    "model": "maths.math",
+    "pk": 6,
+    "fields": {
+        "operation": "mul",
+        "a": 6,
+        "b": 6,
+        "created": "2025-03-18T10:25:00Z",
+        "result": 6
+    }
+},
+{
+    "model": "maths.math",
+    "pk": 7,
+    "fields": {
+        "operation": "add",
+        "a": 7,
+        "b": 8,
+        "created": "2025-03-18T10:30:00Z",
+        "result": 7
+    }
+},
+{
+    "model": "maths.math",
+    "pk": 8,
+    "fields": {
+        "operation": "sub",
+        "a": 9,
+        "b": 3,
+        "created": "2025-03-18T10:35:00Z",
+        "result": 8
+    }
+},
+{
+    "model": "maths.math",
+    "pk": 9,
+    "fields": {
+        "operation": "div",
+        "a": 12,
+        "b": 3,
+        "created": "2025-03-18T10:40:00Z",
+        "result": 9
+    }
+},
+{
+    "model": "maths.math",
+    "pk": 10,
+    "fields": {
+        "operation": "add",
+        "a": 5,
+        "b": 7,
+        "created": "2025-03-18T10:45:00Z",
+        "result": 10
+    }
+},
+{
+    "model": "maths.math",
+    "pk": 11,
+    "fields": {
+        "operation": "mul",
+        "a": 4,
+        "b": 5,
+        "created": "2025-03-18T10:50:00Z",
+        "result": 11
+    }
+},
+{
+    "model": "maths.math",
+    "pk": 12,
+    "fields": {
+        "operation": "mod",
+        "a": 12,
+        "b": 0,
+        "created": "2025-03-18T10:55:00Z",
+        "result": 4
     }
 }
 ]

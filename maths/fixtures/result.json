@@ -1,0 +1,90 @@
+[
+{
+    "model": "maths.result",
+    "pk": 1,
+    "fields": {
+        "value": 3.0,
+        "error": null
+    }
+},
+{
+    "model": "maths.result",
+    "pk": 2,
+    "fields": {
+        "value": -10.0,
+        "error": null
+    }
+},
+{
+    "model": "maths.result",
+    "pk": 3,
+    "fields": {
+        "value": 5.5,
+        "error": null
+    }
+},
+{
+    "model": "maths.result",
+    "pk": 4,
+    "fields": {
+        "value": null,
+        "error": "ZeroDivisionError"
+    }
+},
+{
+    "model": "maths.result",
+    "pk": 5,
+    "fields": {
+        "value": 44.0,
+        "error": null
+    }
+},
+{
+    "model": "maths.result",
+    "pk": 6,
+    "fields": {
+        "value": 36.0,
+        "error": null
+    }
+},
+{
+    "model": "maths.result",
+    "pk": 7,
+    "fields": {
+        "value": 15.0,
+        "error": null
+    }
+},
+{
+    "model": "maths.result",
+    "pk": 8,
+    "fields": {
+        "value": 6.0,
+        "error": null
+    }
+},
+{
+    "model": "maths.result",
+    "pk": 9,
+    "fields": {
+        "value": 4.0,
+        "error": null
+    }
+},
+{
+    "model": "maths.result",
+    "pk": 10,
+    "fields": {
+        "value": 12.0,
+        "error": null
+    }
+},
+{
+    "model": "maths.result",
+    "pk": 11,
+    "fields": {
+        "value": 20.0,
+        "error": null
+    }
+}
+]

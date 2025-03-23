@@ -1,0 +1,46 @@
+[
+{
+    "model": "posts.post",
+    "pk": 1,
+    "fields": {
+        "title": "Nowy wpis",
+        "content": "To jest pierwszy wpis.",
+        "created": "2025-03-18T18:42:02.492Z",
+        "modified": "2025-03-18T18:42:02.492Z",
+        "author": 1
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 2,
+    "fields": {
+        "title": "Kolejna aktualizacja",
+        "content": "Nowości w Django 5.",
+        "created": "2025-03-18T18:42:11.695Z",
+        "modified": "2025-03-18T18:42:11.695Z",
+        "author": 2
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 3,
+    "fields": {
+        "title": "Jak działa Django ORM?",
+        "content": "W tym wpisie wyjaśniam jak działa ORM w Django.",
+        "created": "2025-03-18T18:43:13.307Z",
+        "modified": "2025-03-18T18:43:13.307Z",
+        "author": 3
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 4,
+    "fields": {
+        "title": "test",
+        "content": "test",
+        "created": "2025-03-23T18:29:57.982Z",
+        "modified": "2025-03-23T18:29:57.982Z",
+        "author": 1
+    }
+}
+]

@@ -1,0 +1,26 @@
+[
+{
+    "model": "posts.author",
+    "pk": 1,
+    "fields": {
+        "nick": "Janek",
+        "email": "janek@example.com"
+    }
+},
+{
+    "model": "posts.author",
+    "pk": 2,
+    "fields": {
+        "nick": "Anna",
+        "email": "anna@example.com"
+    }
+},
+{
+    "model": "posts.author",
+    "pk": 3,
+    "fields": {
+        "nick": "Marek",
+        "email": "marek@example.com"
+    }
+}
+]
