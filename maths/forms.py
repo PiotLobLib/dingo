@@ -1,10 +1,8 @@
 from django import forms
+from .models import Result
 
 
-class ResultForm(forms.Form):
-    value = forms.FloatField(required=False)
-    error = forms.CharField(required=False)
-
+class ResultForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         value = cleaned_data.get('value')
@@ -14,3 +12,7 @@ class ResultForm(forms.Form):
             raise forms.ValidationError("Podaj tylko jedną z wartości")
         elif not (value or error):
             raise forms.ValidationError("Nie podano żadnej wartości!")
+
+    class Meta:
+        model = Result
+        fields = ["value", "error"]

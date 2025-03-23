@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 
 from .models import Post, Author
 from .forms import PostForm, AuthorForm
@@ -7,6 +8,32 @@ from .forms import PostForm, AuthorForm
 def post_list(request):
     posts = Post.objects.all()
     return render(request, 'posts/post_list.html', {'posts': posts})
+
+
+# def posts_list(request):
+#     posts = Post.objects.all()
+#     form = PostForm()
+#     if request.method == "POST":
+#         form = PostForm(data=request.POST)
+#         if form.is_valid():
+#             form.save()
+#             messages.add_message(
+#                 request,
+#                 messages.SUCCESS,
+#                 "Dodano nowy Post!!"
+#             )
+
+
+# """
+# Tylko zalogowani użytkownicy będą mogli dodawać nowe posty.
+# Usuniemy wtedy z naszego formularza pole author (poprzez odpowiednie ustawienie fields),
+# ale model wymagać będzie nadal podania autora.
+# Wtedy będziemy mogli wskazać, że to zalogowany użytkownik jest autorem w następujący sposób:
+# """
+# if form.is_valid():
+#        post = form.save(commit=False)
+#        post.author = request.user
+#        post.save()
 
 
 def post_detail(request, pk):
