@@ -3,11 +3,17 @@
 <head>
    <meta charset="UTF-8">
    <title>{% block title %}Title{% endblock %}</title>
+
+   {% load static %}
+
+   <link rel="stylesheet" type="text/css" href="{% static 'maths/css/style.css' %}">
+
 </head>
 <body>
 <div id="content">
    <div id="header">
-       To jest część stała szablonu głównego
+        <img src="{% static 'maths/img/logo.svg' %}">
+        To jest część stała szablonu głównego
    </div>
    {% if messages %}
        <ul class="messages">
