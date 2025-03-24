@@ -3,6 +3,17 @@
 {% block title %}Maths list{% endblock %}
 
 {% block content %}
+    <form method="get">
+        <label for="operation">Filtruj po operacji:</label>
+        <select name="operation" id="operation">
+            <option value="">-- Wszystkie --</option>
+            <option value="add" {% if current_operation == "add" %}selected{% endif %}>Dodawanie</option>
+            <option value="sub" {% if current_operation == "sub" %}selected{% endif %}>Odejmowanie</option>
+            <option value="mul" {% if current_operation == "mul" %}selected{% endif %}>Mnożenie</option>
+            <option value="div" {% if current_operation == "div" %}selected{% endif %}>Dzielenie</option>
+        </select>
+        <button type="submit">Szukaj</button>
+    </form>
    <ul>
        {% for m in maths %}
            <li><a href="{% url "maths:details" m.id %}">{{ m }}</a></li>
