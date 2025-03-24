@@ -22,6 +22,9 @@ class Math(models.Model):
         blank=True
     )
 
+    class Meta:
+        ordering = ["-id"]
+
     def __str__(self):
         return f"id:{self.id}, a={self.a}, b={self.b}, op={self.operation}"
 

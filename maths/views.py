@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 from maths.models import Math, Result
 from maths.forms import ResultForm
@@ -92,6 +93,10 @@ class Calculator:
 
 def maths_list(request):
     maths = Math.objects.all()
+    paginator = Paginator(maths, 5)
+    page_number = request.GET.get('page')
+    maths = paginator.get_page(page_number)
+
     return render(
         request=request,
         template_name="maths/list.html",
@@ -103,7 +108,7 @@ def math_details(request, id):
     math = Math.objects.get(id=id)
     return render(
         request=request,
-        template_name="maths/details.html",
+        template_name="maths/list.html",
         context={"math": math}
     )
 

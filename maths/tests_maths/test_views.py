@@ -4,17 +4,23 @@ from maths.models import Math, Result
 
 
 class MathViewsTest(TestCase):
+    fixtures = ['math', 'result']
 
     def setUp(self):
-        Math.objects.create(operation="sub", a=20, b=30)
         self.client = Client()
 
+    def test_get_first_12(self):
+        response = self.client.get("/maths/histories/?page=3")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.context["maths"]), 2)
+
     def test_maths_list_view(self):
+        Math.objects.create(operation="sub", a=20, b=30)
         response = self.client.get("/maths/histories/")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.context["maths"]), 1)
+        self.assertEqual(len(response.context["maths"]), 5)
         self.assertIn(
-            '<li><a href="/maths/histories/1">id:1, a=20, b=30, op=sub</a></li>',
+            '<li><a href="/maths/histories/13">id:13, a=20, b=30, op=sub</a></li>',
             response.content.decode()
         )
 
@@ -25,17 +31,18 @@ class MathViewsTest(TestCase):
         self.assertContains(response, "add")
 
     def test_results_list_get(self):
-        Result.objects.create(value=10)
+        Result.objects.create(value=550)
         response = self.client.get("/maths/results/")
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "10.0")
+        self.assertContains(response, "550.0")
 
     def test_results_list_post_valid(self):
-        data = {"value": 99.9}
-        response = self.client.post("/maths/results/", data=data, follow=True)
+        data = {"value": 321.0}
+        response = self.client.post("/maths/results/", data=data)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Utworzono nowy Result")
-        self.assertTrue(Result.objects.filter(value=99.9).exists())
+        self.assertTrue(Result.objects.filter(
+            value=321.0, error=None).exists())
 
     def test_results_list_post_invalid(self):
         # Invalid: both fields empty
