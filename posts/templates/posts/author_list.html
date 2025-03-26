@@ -1,4 +1,4 @@
-{% extends "posts/base.html" %}
+{% extends "maths/main.html" %}
 
 {% block title %}Lista autorów{% endblock %}
 
@@ -9,5 +9,6 @@
            <li><a href="{% url 'posts:author_detail' author.id %}">{{ author.nick }}</a> – {{ author.email }}</li>
        {% endfor %}
    </ul>
-   <a href="{% url 'posts:author_create' %}">Dodaj nowego autora</a>
+   <a href="{% url 'posts:author_create' %}" class="btn btn-secondary">Dodaj nowego autora</a>
+   
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "posts/base.html" %}
+{% extends "maths/main.html" %}
 
 {% block title %}Dodaj autora{% endblock %}
 
@@ -8,6 +8,6 @@
        {% csrf_token %}
        {{ form.as_p }}
        <button type="submit">Zapisz</button>
+       <a href="{% url 'posts:author_list' %}" class="btn btn-secondary">Powrót</a>
    </form>
-   <a href="{% url 'posts:author_list' %}">Powrót</a>
 {% endblock %}

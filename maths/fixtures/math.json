@@ -130,5 +130,16 @@
         "created": "2025-03-18T10:55:00Z",
         "result": 4
     }
+},
+{
+    "model": "maths.math",
+    "pk": 13,
+    "fields": {
+        "operation": "add",
+        "a": 1,
+        "b": 2,
+        "created": "2025-03-24T18:51:09.869Z",
+        "result": 1
+    }
 }
 ]

@@ -1,4 +1,4 @@
-{% extends "posts/base.html" %}
+{% extends "maths/main.html" %}
 
 {% block title %}{{ author.nick }}{% endblock %}
 
@@ -11,5 +11,5 @@
            <li><a href="{% url 'posts:post_detail' post.id %}">{{ post.title }}</a></li>
        {% endfor %}
    </ul>
-   <a href="{% url 'posts:author_list' %}">Powrót do listy autorów</a>
+   <a href="{% url 'posts:author_list' %}" class="btn btn-secondary">Powrót do listy autorów</a>
 {% endblock %}

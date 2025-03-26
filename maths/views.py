@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.db.models import Count
 
 from maths.models import Math, Result
 from maths.forms import ResultForm
@@ -92,32 +93,38 @@ class Calculator:
 
 
 def maths_list(request):
-    operation = request.GET.get('operation')
-
+    operation = request.GET.get("operation")
     if operation:
         maths = Math.objects.filter(operation=operation)
     else:
         maths = Math.objects.all()
 
-    paginator = Paginator(maths, 5)
-    page_number = request.GET.get('page')
-    maths = paginator.get_page(page_number)
+    paginator = Paginator(maths.order_by("-id"), 5)
+    page_number = request.GET.get("page")
+    maths_page = paginator.get_page(page_number)
 
-    return render(
-        request=request,
-        template_name="maths/list.html",
-        context={
-            "maths": maths,
-            "current_operation": operation
+    # Stats
+    stats = Math.objects.values('operation').annotate(count=Count('id'))
+    stats_dict = {op['operation']: op['count'] for op in stats}
+
+    context = {
+        "maths": maths_page,
+        "current_operation": operation,
+        "stats": {
+            "add": stats_dict.get("add", 0),
+            "sub": stats_dict.get("sub", 0),
+            "mul": stats_dict.get("mul", 0),
+            "div": stats_dict.get("div", 0),
         }
-    )
+    }
+    return render(request, "maths/list.html", context)
 
 
 def math_details(request, id):
     math = Math.objects.get(id=id)
     return render(
         request=request,
-        template_name="maths/list.html",
+        template_name="maths/details.html",
         context={"math": math}
     )
 

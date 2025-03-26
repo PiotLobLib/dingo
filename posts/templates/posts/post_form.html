@@ -1,4 +1,4 @@
-{% extends "posts/base.html" %}
+{% extends "maths/main.html" %}
 
 {% block title %}Dodaj post{% endblock %}
 
@@ -9,5 +9,5 @@
        {{ form.as_p }}
        <button type="submit">Zapisz</button>
    </form>
-   <a href="{% url 'posts:post_list' %}">Powrót</a>
+   <a href="{% url 'posts:post_list' %}" class="btn btn-secondary">Powrót</a>
 {% endblock %}

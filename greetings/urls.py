@@ -1,9 +1,9 @@
 from django.urls import path
-from django.http import HttpResponse
 
+from greetings.views import about, contact, welcome
 
 urlpatterns = [
-    path('', lambda request: HttpResponse("Hello World!")),
-    path('<name>', lambda request, name: HttpResponse(
-        f"Hello {name.capitalize()}!"))
+    path('', welcome, name="welcome"),
+    path('about/', about, name="about"),
+    path('contact/', contact, name="contact"),
 ]

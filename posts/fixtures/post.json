@@ -42,5 +42,16 @@
         "modified": "2025-03-23T18:29:57.982Z",
         "author": 1
     }
+},
+{
+    "model": "posts.post",
+    "pk": 5,
+    "fields": {
+        "title": "coś tam",
+        "content": "bla bla",
+        "created": "2025-03-25T23:41:05.755Z",
+        "modified": "2025-03-25T23:41:05.755Z",
+        "author": 2
+    }
 }
 ]

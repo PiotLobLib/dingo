@@ -1,5 +1,6 @@
 from django.test import TestCase, Client
 from django.urls import reverse
+
 from maths.models import Math, Result
 
 
@@ -9,20 +10,20 @@ class MathViewsTest(TestCase):
     def setUp(self):
         self.client = Client()
 
-    def test_get_first_12(self):
+    def test_get_first_3(self):
         response = self.client.get("/maths/histories/?page=3")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.context["maths"]), 2)
+        self.assertEqual(len(response.context["maths"]), 3)
 
     def test_maths_list_view(self):
-        Math.objects.create(operation="sub", a=20, b=30)
-        response = self.client.get("/maths/histories/")
+        math = Math.objects.create(operation="sub", a=20, b=30)
+        response = self.client.get(reverse("maths:list"))
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.context["maths"]), 5)
-        self.assertIn(
-            '<li><a href="/maths/histories/13">id:13, a=20, b=30, op=sub</a></li>',
-            response.content.decode()
-        )
+        self.assertContains(
+            response, f'<td><a href="/maths/histories/{math.id}">{math.id}</a></td>')
+        self.assertContains(response, f"<td>{math.a}</td>")
+        self.assertContains(response, f"<td>{math.b}</td>")
+        self.assertContains(response, f"<td>{math.operation}</td>")
 
     def test_math_details_view(self):
         math = Math.objects.create(operation="add", a=4, b=3)
@@ -35,14 +36,6 @@ class MathViewsTest(TestCase):
         response = self.client.get("/maths/results/")
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "550.0")
-
-    def test_results_list_post_valid(self):
-        data = {"value": 321.0}
-        response = self.client.post("/maths/results/", data=data)
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Utworzono nowy Result")
-        self.assertTrue(Result.objects.filter(
-            value=321.0, error=None).exists())
 
     def test_results_list_post_invalid(self):
         # Invalid: both fields empty

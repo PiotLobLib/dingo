@@ -1,13 +1,28 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib import messages
+from django.core.paginator import Paginator
 
 from .models import Post, Author
 from .forms import PostForm, AuthorForm
 
 
 def post_list(request):
-    posts = Post.objects.all()
-    return render(request, 'posts/post_list.html', {'posts': posts})
+    posts = Post.objects.order_by('-created')
+    paginator = Paginator(posts, 10)
+    page_number = request.GET.get('page')
+    posts_page = paginator.get_page(page_number)
+
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('posts:post_list')
+    else:
+        form = PostForm()
+
+    return render(request, "posts/post_list.html", {
+        "posts": posts_page,
+        "form": form
+    })
 
 
 # def posts_list(request):
