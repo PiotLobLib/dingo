@@ -1,4 +1,5 @@
-{% extends "maths/main.html" %}
+{% extends "main.html" %}
+
 {% load bootstrap4 %}
 
 {% block title %}Lista postów{% endblock %}
@@ -59,13 +60,15 @@
 
     <!-- Prawa kolumna: formularz dodawania -->
     <div class="col-md-4">
+        {% if perms.posts.add_post %}
         <h4 class="mb-3">Dodaj nowy</h4>
         <form method="post" novalidate>
             {% csrf_token %}
-            {% bootstrap_form form %}
+            {% bootstrap_form form  %}
             <button type="submit" class="btn btn-primary">Dodaj</button>
         </form>
+        {% else %}
+        {% endif %}
     </div>
-
 </div>
 {% endblock %}

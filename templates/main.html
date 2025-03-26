@@ -42,6 +42,22 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contact' %}">Contact</a>
           </li>
+
+          {% if user.is_authenticated %}
+          <li class="nav-item d-flex align-items-center">
+            <span class="nav-link p-0">{{ user.username }}</span>
+            <span class="nav-item text-muted me-3">|</span>
+            <form method="post" action="{% url 'logout' %}" class="m-0">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-link p-0" style="border:none; background:none;">Logout</button>
+            </form>
+          </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+          {% endif %}
+
         </ul>
       </div>
   

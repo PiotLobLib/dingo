@@ -16,9 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LogoutView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path("login/", LoginView.as_view(), name="login"),
+    # musi być by zadziałało przekierowanie po logout
+    path("logout/", LogoutView.as_view(next_page="/"), name="logout"),
     path('maths/', include("maths.urls")),
     path('', include("greetings.urls")),
     path('sessions/', include("sessions.urls")),

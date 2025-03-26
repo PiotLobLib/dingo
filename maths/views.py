@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db.models import Count
+from django.contrib.auth.decorators import login_required
 
 from maths.models import Math, Result
 from maths.forms import ResultForm
@@ -92,6 +93,7 @@ class Calculator:
             context=c)
 
 
+@login_required
 def maths_list(request):
     operation = request.GET.get("operation")
     if operation:
