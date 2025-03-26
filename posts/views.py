@@ -12,7 +12,9 @@ def post_list(request):
     posts_page = paginator.get_page(page_number)
 
     if request.method == "POST":
-        form = PostForm(request.POST)
+        # form = PostForm(request.POST)
+        # form = ResultForm(data=request.POST, files=request.FILES)
+        form = PostForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
             return redirect('posts:post_list')
@@ -58,7 +60,9 @@ def post_detail(request, pk):
 
 def post_create(request):
     if request.method == "POST":
-        form = PostForm(request.POST)
+        # form = PostForm(request.POST)
+        # form = ResultForm(data=request.POST, files=request.FILES)
+        form = PostForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
             return redirect('posts:post_list')

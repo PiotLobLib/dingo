@@ -4,10 +4,10 @@
 
 {% block content %}
    <h2>Dodaj nowy post</h2>
-   <form method="post">
-       {% csrf_token %}
-       {{ form.as_p }}
-       <button type="submit">Zapisz</button>
-   </form>
+   <form method="POST" enctype='multipart/form-data'>
+        {% csrf_token %}
+        {% bootstrap_form form  %}
+        <input type="submit" value="Dodaj">
+    </form>
    <a href="{% url 'posts:post_list' %}" class="btn btn-secondary">Powrót</a>
 {% endblock %}

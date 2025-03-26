@@ -6,7 +6,8 @@ from .models import Post, Author
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'content', 'author']
+        fields = "__all__"
+        fields = ["title", "content", "author", "image"]
 
 
 class AuthorForm(forms.ModelForm):
