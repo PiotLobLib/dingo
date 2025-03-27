@@ -1,0 +1,39 @@
+{% extends "main.html" %}
+
+{% block content %}
+<h2>{{ book.title }}</h2>
+<p><strong>Autor:</strong> <a href="{% url 'books:author_detail' book.author.pk %}">{{ book.author.name }}</a></p>
+<p>{{ book.description }}</p>
+{% if book.cover %}
+    <img src="{{ book.cover.url }}" class="img-fluid" style="max-width: 200px;">
+{% endif %}
+
+<p>Status: 
+    {% if book.is_available %}
+        <span class="text-success">Dostępna</span>
+        {% if user.is_authenticated %}
+        <form method="post">{% csrf_token %}
+            <button class="btn btn-primary">Wypożycz</button>
+        </form>
+        {% endif %}
+    {% else %}
+        <span class="text-danger">Wypożyczona</span>
+    {% endif %}
+</p>
+
+<h4>Komentarze</h4>
+<ul>
+    {% for comment in book.comments.all %}
+    <li><strong>{{ comment.nick }}:</strong> {{ comment.content }}</li>
+    {% endfor %}
+</ul>
+
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="add_comment">
+    <input name="nick" placeholder="Nick" class="form-control mb-2">
+    <textarea name="comment" placeholder="Treść" class="form-control mb-2"></textarea>
+    <button class="btn btn-secondary">Dodaj komentarz</button>
+</form>
+
+{% endblock %}

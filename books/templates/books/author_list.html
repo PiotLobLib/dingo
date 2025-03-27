@@ -1,0 +1,48 @@
+{% extends "main.html" %}
+
+{% load bootstrap4 %}
+{% load static %}
+
+{% block title %}Autorzy{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Autorzy</h2>
+
+    {% if authors %}
+        <div class="list-group">
+            {% for author in authors %}
+                <a href="{% url 'books:author_detail' author.pk %}" class="list-group-item list-group-item-action">
+                    {{ author.name }} ({{ author.books.count }} książek)
+                </a>
+            {% endfor %}
+        </div>
+
+        {% if authors.has_other_pages %}
+            <nav class="mt-4">
+                <ul class="pagination justify-content-center">
+                    {% if authors.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ authors.previous_page_number }}">Poprzednia</a>
+                        </li>
+                    {% endif %}
+
+                    {% for num in authors.paginator.page_range %}
+                        <li class="page-item {% if authors.number == num %}active{% endif %}">
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                    {% endfor %}
+
+                    {% if authors.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ authors.next_page_number }}">Następna</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+    {% else %}
+        <p>Brak autorów do wyświetlenia.</p>
+    {% endif %}
+</div>
+{% endblock %}

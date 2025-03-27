@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap4',
+    'books',
     # 'django_bootstrap_breadcrumbs',  # Nie kompatybilne z Django 4+ ...
     'greetings',
     'maths',

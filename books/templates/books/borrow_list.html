@@ -1,0 +1,57 @@
+{% extends "main.html" %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block title %}Moje wypożyczenia{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Twoje wypożyczenia</h2>
+
+    {% if borrows %}
+        <table class="table table-striped">
+            <thead class="thead-light">
+                <tr>
+                    <th>Książka</th>
+                    <th>Data wypożyczenia</th>
+                    <th>Status</th>
+                    <th>Akcja</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for borrow in borrows %}
+                <tr>
+                    <td>
+                        <a href="{% url 'books:book_detail' borrow.book.id %}">
+                            {{ borrow.book.title }}
+                        </a>
+                    </td>
+                    <td>{{ borrow.date_borrowed|date:"Y-m-d H:i" }}</td>
+                    <td>
+                        {% if borrow.is_returned %}
+                            <span class="text-success">Zwrócono</span><br>
+                            <small>{{ borrow.date_returned|date:"Y-m-d H:i" }}</small>
+                        {% else %}
+                            <span class="text-danger">Wypożyczona</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if not borrow.is_returned %}
+                        <form method="post" class="mb-0 d-inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="borrow_id" value="{{ borrow.id }}">
+                            <button type="submit" class="btn btn-sm btn-success">Zwróć</button>
+                        </form>
+                        {% else %}
+                            <span class="text-muted">-</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Nie masz aktywnych wypożyczeń.</p>
+    {% endif %}
+</div>
+{% endblock %}

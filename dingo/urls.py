@@ -29,6 +29,7 @@ urlpatterns = [
     path("login/", LoginView.as_view(), name="login"),
     # musi być by zadziałało przekierowanie po logout
     path("logout/", LogoutView.as_view(next_page="/"), name="logout"),
+    path('books/', include("books.urls")),
     path('maths/', include("maths.urls")),
     path('', include("greetings.urls")),
     path('sessions/', include("sessions.urls")),

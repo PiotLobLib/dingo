@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+
+{% load bootstrap4 %}
+{% load static %}
+
+{% block title %}{{ author.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ author.name }}</h2>
+
+    {% if author.bio %}
+        <p class="text-muted">{{ author.bio }}</p>
+    {% endif %}
+
+    <h4 class="mt-4">Książki tego autora</h4>
+    {% if books %}
+        <ul class="list-group mt-2">
+            {% for book in books %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="{% url 'books:book_detail' book.pk %}">
+                        {{ book.title }}
+                    </a>
+                    {% if book.is_available %}
+                        <span class="badge bg-success text-white">Dostępna</span>
+                    {% else %}
+                        <span class="badge bg-danger text-white">Wypożyczona</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="mt-2">Brak książek przypisanych do tego autora.</p>
+    {% endif %}
+</div>
+{% endblock %}
