@@ -1,13 +1,15 @@
 {% extends "main.html" %}
 
-{% block title %}Dodaj post{% endblock %}
+{% load bootstrap4 %}
+
+{% block title %}{{ form.instance.pk|yesno:"Edytuj post / Dodaj post" }}{% endblock %}
 
 {% block content %}
-   <h2>Dodaj nowy post</h2>
+   <h2>{{ form.instance.pk|yesno:"Edytuj post / Dodaj nowy post" }}</h2>
    <form method="POST" enctype='multipart/form-data'>
         {% csrf_token %}
         {% bootstrap_form form  %}
-        <input type="submit" value="Dodaj">
+        <button type="submit" class="btn btn-primary">Zapisz</button>
     </form>
    <a href="{% url 'posts:post_list' %}" class="btn btn-secondary">Powrót</a>
 {% endblock %}

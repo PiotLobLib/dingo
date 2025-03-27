@@ -1,8 +1,20 @@
+from django.contrib.auth.decorators import login_required, permission_required
+from django.utils.decorators import method_decorator
+from django.views.generic.edit import UpdateView
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 
 from .models import Post, Author
 from .forms import PostForm, AuthorForm
+
+
+@method_decorator(login_required, name='dispatch')
+@method_decorator(permission_required('posts.change_post', raise_exception=True), name='dispatch')
+class PostUpdateView(UpdateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'posts/post_form.html'
+    success_url = '/posts/'
 
 
 def post_list(request):
