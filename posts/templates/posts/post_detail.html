@@ -3,9 +3,15 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-   <h2>{{ post.title }}</h2>
+   <h1>{{ post.title }}</h1>
+   <h2>{{ post.author.nick }} | {{ post.created }}</h2>
    <p>{{ post.content }}</p>
-   <p><strong>Autor:</strong> <a href="{% url 'posts:author_detail' post.author.id %}">{{ post.author.nick }}</a></p>
-   <p><strong>Data utworzenia:</strong> {{ post.created }}</p>
+   
+   {% if post.image %}
+      <div><img src="{{ post.image.url }}" class="img-fluid" style="max-width: 400px;"></div>
+   {% else %}
+      <p><em>Brak obrazka</em></p>
+   {% endif %}
+
    <a href="{% url 'posts:post_list' %}" class="btn btn-secondary">Powrót do listy</a>
 {% endblock %}

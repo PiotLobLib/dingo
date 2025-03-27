@@ -62,10 +62,10 @@
     <div class="col-md-4">
         {% if perms.posts.add_post %}
         <h4 class="mb-3">Dodaj nowy</h4>
-        <form method="post" novalidate>
+        <form method="POST" enctype='multipart/form-data'>
             {% csrf_token %}
             {% bootstrap_form form  %}
-            <button type="submit" class="btn btn-primary">Dodaj</button>
+            <input type="submit" value="Dodaj">
         </form>
         {% else %}
         {% endif %}
