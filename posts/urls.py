@@ -13,8 +13,8 @@ from .views import (
 )
 
 
-app_name = "posts"
 app_name = 'posts'
+
 urlpatterns = [
     path('', post_list, name='post_list'),
     path('post/<int:pk>/', post_detail, name='post_detail'),
