@@ -31,3 +31,12 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.word
+
+
+class Osoba(models.Model):
+    imie = models.CharField(max_length=200)
+    nazwisko = models.CharField(max_length=200)
+    wzrost = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.imie} {self.nazwisko}"
